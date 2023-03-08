@@ -39,7 +39,7 @@ public:
     int motiontime = 0;
     float dt = 0.002; // 0.001~0.01
 
-    float data[12] = {0};
+    float data[11] = {0};
     int server_fd, n, i = 0;
     char buffer[MAX_BUFFER_SIZE];
     struct sockaddr_in servaddr, cliaddr;
@@ -59,7 +59,7 @@ void Custom::UDPSend()
 void Custom::UDPMatlab()
 {
 
-    if (i == 0)
+    if (i == 0) 
     {
 
         server_fd = socket(AF_INET, SOCK_DGRAM, 0);
@@ -77,7 +77,7 @@ void Custom::UDPMatlab()
     }
     recvfrom(server_fd, data, sizeof(data), 0, NULL, NULL);
 
-    printf("Received Matlab data: %f, %f\n", data[0], data[1]);
+    //printf("Received Matlab data: %f, %f\n", data[0], data[1]);
 }
 
 void Custom::UDPLink()
@@ -87,7 +87,7 @@ void Custom::UDPLink()
     udp.GetRecv(state);
     // printf("%d   %f\n", motiontime, state.imu.quaternion[2]);
 
-    cmd.mode = 1;
+    cmd.mode = static_cast<uint8_t>(data[0]);
     /*
     uint8_t
     0. idle, default stand
@@ -105,7 +105,7 @@ void Custom::UDPLink()
     12. dance1
     13. dance2
     */
-    cmd.gaitType = 0;
+    cmd.gaitType = static_cast<uint8_t>(data[1]);
     /*
     uint8_t
     0.idle
@@ -114,25 +114,24 @@ void Custom::UDPLink()
     3.climb stair
     4.trot obstacle
     */
-    cmd.speedLevel = 0;
+    cmd.speedLevel = static_cast<uint8_t>(data[2]);
     /*
     uint8_t
     0. default low speed.
     1. medium speed
     2. high speed. during walking, only respond MODE 3
     */
-    cmd.footRaiseHeight = 0; // float (unit: m, default: 0.08m), foot up height while walking, delta value
-
-    cmd.bodyHeight = 0;     // float (unit: m, default: 0.28m), delta value
-    cmd.euler[0] = data[0]; // float (unit: rad), roll pitch yaw in stand mode
-    cmd.euler[1] = 0;
-    cmd.euler[2] = 0;
-    cmd.velocity[0] = 0.0f; // float (unit: m/s), forwardSpeed,  in body frame
-    cmd.velocity[1] = 0.0f; // float (unit: m/s), sideSpeed
-    cmd.yawSpeed = 0.0f;    // float (unit: rad/s), rotateSpeed in body frame
+    cmd.footRaiseHeight = data[3]; // float (unit: m, default: 0.08m), foot up height while walking, delta value
+    cmd.bodyHeight = data[4];     // float (unit: m, default: 0.28m), delta value
+    cmd.euler[0] = data[5]; // float (unit: rad), roll pitch yaw in stand mode
+    cmd.euler[1] = data[6];
+    cmd.euler[2] = data[7];
+    cmd.velocity[0] = data[8]; // float (unit: m/s), forwardSpeed,  in body frame
+    cmd.velocity[1] = data[9]; // float (unit: m/s), sideSpeed
+    cmd.yawSpeed = data[10];    // float (unit: rad/s), rotateSpeed in body frame
     cmd.reserve = 0;
 
-    printf("%f\n", cmd.euler[0]);
+    printf("mode:%d\ngaitType:%d\nspeedLevel:%d\n", cmd.mode,cmd.gaitType,cmd.speedLevel);
 
     udp.SetSend(cmd);
 }
