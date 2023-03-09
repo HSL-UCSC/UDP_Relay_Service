@@ -158,8 +158,6 @@ int main(void)
     while (1)
     {
         sleep(10);
-
-        // i++;
     };
 
     return 0;

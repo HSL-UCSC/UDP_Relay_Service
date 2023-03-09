@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/unitree/Desktop/unitree_legged_sdk/example/example_velocity.cpp" "/home/unitree/Desktop/unitree_legged_sdk/build/CMakeFiles/example_velocity.dir/example/example_velocity.cpp.o"
+  "/home/unitree/Desktop/unitree_matlab/example/example_velocity.cpp" "/home/unitree/Desktop/unitree_matlab/build/CMakeFiles/example_velocity.dir/example/example_velocity.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

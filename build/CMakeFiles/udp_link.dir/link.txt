@@ -1,1 +1,1 @@
-/usr/bin/c++  -O3 -fPIC  -rdynamic CMakeFiles/udp_link.dir/example/udp_link.cpp.o  -o udp_link   -L/home/unitree/Desktop/unitree_legged_sdk/lib/cpp/amd64  -Wl,-rpath,/home/unitree/Desktop/unitree_legged_sdk/lib/cpp/amd64 -pthread -lunitree_legged_sdk 
+/usr/bin/c++  -O3 -fPIC  -rdynamic CMakeFiles/udp_link.dir/example/udp_link.cpp.o  -o udp_link   -L/home/unitree/Desktop/unitree_matlab/lib/cpp/amd64  -Wl,-rpath,/home/unitree/Desktop/unitree_matlab/lib/cpp/amd64 -pthread -lunitree_legged_sdk 

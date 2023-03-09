@@ -6,5 +6,5 @@ CXX_FLAGS = -O3 -fPIC   -std=c++14
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/unitree/Desktop/unitree_legged_sdk/include 
+CXX_INCLUDES = -I/home/unitree/Desktop/unitree_matlab/include 
 

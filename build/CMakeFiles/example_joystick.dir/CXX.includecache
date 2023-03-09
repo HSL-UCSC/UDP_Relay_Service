@@ -70,11 +70,11 @@ joystick.h
 boost/bind.hpp
 -
 
-/home/unitree/Desktop/unitree_legged_sdk/example/example_joystick.cpp
+/home/unitree/Desktop/unitree_matlab/example/example_joystick.cpp
 unitree_legged_sdk/unitree_legged_sdk.h
-/home/unitree/Desktop/unitree_legged_sdk/example/unitree_legged_sdk/unitree_legged_sdk.h
+/home/unitree/Desktop/unitree_matlab/example/unitree_legged_sdk/unitree_legged_sdk.h
 unitree_legged_sdk/joystick.h
-/home/unitree/Desktop/unitree_legged_sdk/example/unitree_legged_sdk/joystick.h
+/home/unitree/Desktop/unitree_matlab/example/unitree_legged_sdk/joystick.h
 math.h
 -
 iostream

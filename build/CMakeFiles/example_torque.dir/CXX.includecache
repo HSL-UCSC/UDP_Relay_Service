@@ -70,9 +70,9 @@ joystick.h
 boost/bind.hpp
 -
 
-/home/unitree/Desktop/unitree_legged_sdk/example/example_torque.cpp
+/home/unitree/Desktop/unitree_matlab/example/example_torque.cpp
 unitree_legged_sdk/unitree_legged_sdk.h
-/home/unitree/Desktop/unitree_legged_sdk/example/unitree_legged_sdk/unitree_legged_sdk.h
+/home/unitree/Desktop/unitree_matlab/example/unitree_legged_sdk/unitree_legged_sdk.h
 math.h
 -
 iostream

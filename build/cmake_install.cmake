@@ -1,4 +1,4 @@
-# Install script for directory: /home/unitree/Desktop/unitree_legged_sdk
+# Install script for directory: /home/unitree/Desktop/unitree_matlab
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,12 +44,12 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_position"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin/unitree" TYPE EXECUTABLE FILES "/home/unitree/Desktop/unitree_legged_sdk/build/example_position")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin/unitree" TYPE EXECUTABLE FILES "/home/unitree/Desktop/unitree_matlab/build/example_position")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_position" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_position")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_position"
-         OLD_RPATH "/home/unitree/Desktop/unitree_legged_sdk/lib/cpp/amd64:"
+         OLD_RPATH "/home/unitree/Desktop/unitree_matlab/lib/cpp/amd64:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_position")
@@ -64,12 +64,12 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_velocity"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin/unitree" TYPE EXECUTABLE FILES "/home/unitree/Desktop/unitree_legged_sdk/build/example_velocity")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin/unitree" TYPE EXECUTABLE FILES "/home/unitree/Desktop/unitree_matlab/build/example_velocity")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_velocity" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_velocity")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_velocity"
-         OLD_RPATH "/home/unitree/Desktop/unitree_legged_sdk/lib/cpp/amd64:"
+         OLD_RPATH "/home/unitree/Desktop/unitree_matlab/lib/cpp/amd64:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_velocity")
@@ -84,12 +84,12 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_torque"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin/unitree" TYPE EXECUTABLE FILES "/home/unitree/Desktop/unitree_legged_sdk/build/example_torque")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin/unitree" TYPE EXECUTABLE FILES "/home/unitree/Desktop/unitree_matlab/build/example_torque")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_torque" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_torque")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_torque"
-         OLD_RPATH "/home/unitree/Desktop/unitree_legged_sdk/lib/cpp/amd64:"
+         OLD_RPATH "/home/unitree/Desktop/unitree_matlab/lib/cpp/amd64:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_torque")
@@ -104,12 +104,12 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_walk"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin/unitree" TYPE EXECUTABLE FILES "/home/unitree/Desktop/unitree_legged_sdk/build/example_walk")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin/unitree" TYPE EXECUTABLE FILES "/home/unitree/Desktop/unitree_matlab/build/example_walk")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_walk" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_walk")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_walk"
-         OLD_RPATH "/home/unitree/Desktop/unitree_legged_sdk/lib/cpp/amd64:"
+         OLD_RPATH "/home/unitree/Desktop/unitree_matlab/lib/cpp/amd64:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_walk")
@@ -124,12 +124,12 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_joystick"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin/unitree" TYPE EXECUTABLE FILES "/home/unitree/Desktop/unitree_legged_sdk/build/example_joystick")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin/unitree" TYPE EXECUTABLE FILES "/home/unitree/Desktop/unitree_matlab/build/example_joystick")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_joystick" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_joystick")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_joystick"
-         OLD_RPATH "/home/unitree/Desktop/unitree_legged_sdk/lib/cpp/amd64:"
+         OLD_RPATH "/home/unitree/Desktop/unitree_matlab/lib/cpp/amd64:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/unitree/example_joystick")
@@ -138,7 +138,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/unitree" TYPE DIRECTORY FILES "/home/unitree/Desktop/unitree_legged_sdk/lib/cpp/amd64/" USE_SOURCE_PERMISSIONS)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/unitree" TYPE DIRECTORY FILES "/home/unitree/Desktop/unitree_matlab/lib/cpp/amd64/" USE_SOURCE_PERMISSIONS)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -149,5 +149,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/unitree/Desktop/unitree_legged_sdk/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/unitree/Desktop/unitree_matlab/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
