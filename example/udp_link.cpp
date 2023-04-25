@@ -131,7 +131,7 @@ void Custom::UDPLink()
     cmd.yawSpeed = data[10];    // float (unit: rad/s), rotateSpeed in body frame
     cmd.reserve = 0;
 
-    printf("mode:%d\ngaitType:%d\nspeedLevel:%d\n", cmd.mode,cmd.gaitType,cmd.speedLevel);
+    //printf("mode:%d\ngaitType:%d\nspeedLevel:%d\n", cmd.mode,cmd.gaitType,cmd.speedLevel);
 
     udp.SetSend(cmd);
 }

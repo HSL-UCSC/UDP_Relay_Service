@@ -47,7 +47,8 @@ void Custom::RobotControl()
     udp.GetRecv(state);
     printf("%d   %f\n", motiontime, state.imu.quaternion[2]);
 
-    cmd.mode = 1;      // 0:idle, default stand      1:forced stand     2:walk continuously
+
+    cmd.mode = 2;      // 0:idle, default stand      1:forced stand     2:walk continuously
     cmd.gaitType = 0;
     cmd.speedLevel = 0;
     cmd.footRaiseHeight = 0;
@@ -55,7 +56,7 @@ void Custom::RobotControl()
     cmd.euler[0]  = 0;
     cmd.euler[1] = 0;
     cmd.euler[2] = 0;
-    cmd.velocity[0] = 0.0f;
+    cmd.velocity[0] = 0.2f;
     cmd.velocity[1] = 0.0f;
     cmd.yawSpeed = 0.0f;
     cmd.reserve = 0;
