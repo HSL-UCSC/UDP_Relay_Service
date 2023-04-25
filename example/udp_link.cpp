@@ -87,28 +87,27 @@ void Custom::UDPLink()
 
     motiontime += 2;
     udp.GetRecv(state);
+
     double current_time = GetSystemTime();
     if (current_time - last_recv_time > 1.0)
     {
-        cmd = {0};
-    }
-    else
-    {
-        cmd.mode = static_cast<uint8_t>(data[0]);
-        cmd.gaitType = static_cast<uint8_t>(data[1]);
-        cmd.speedLevel = static_cast<uint8_t>(data[2]);
-        cmd.footRaiseHeight = data[3]; // float (unit: m, default: 0.08m), foot up height while walking, delta value
-        cmd.bodyHeight = data[4];      // float (unit: m, default: 0.28m), delta value
-        cmd.euler[0] = data[5];        // float (unit: rad), roll pitch yaw in stand mode
-        cmd.euler[1] = data[6];
-        cmd.euler[2] = data[7];
-        cmd.velocity[0] = data[8]; // float (unit: m/s), forwardSpeed,  in body frame
-        cmd.velocity[1] = data[9]; // float (unit: m/s), sideSpeed
-        cmd.yawSpeed = data[10];   // float (unit: rad/s), rotateSpeed in body frame
-        cmd.reserve = 0;
+        data[0] = 0;
     }
 
-    // printf("mode:%d\ngaitType:%d\nspeedLevel:%d\n", cmd.mode,cmd.gaitType,cmd.speedLevel);
+    cmd.mode = static_cast<uint8_t>(data[0]);
+    cmd.gaitType = static_cast<uint8_t>(data[1]);
+    cmd.speedLevel = static_cast<uint8_t>(data[2]);
+    cmd.footRaiseHeight = data[3]; // float (unit: m, default: 0.08m), foot up height while walking, delta value
+    cmd.bodyHeight = data[4];      // float (unit: m, default: 0.28m), delta value
+    cmd.euler[0] = data[5];        // float (unit: rad), roll pitch yaw in stand mode
+    cmd.euler[1] = data[6];
+    cmd.euler[2] = data[7];
+    cmd.velocity[0] = data[8]; // float (unit: m/s), forwardSpeed,  in body frame
+    cmd.velocity[1] = data[9]; // float (unit: m/s), sideSpeed
+    cmd.yawSpeed = data[10];   // float (unit: rad/s), rotateSpeed in body frame
+    cmd.reserve = 0;
+
+    printf("mode:%d v-forward:%f v-side:%f yaw:%f\n", cmd.mode, cmd.velocity[0], cmd.velocity[1], cmd.yawSpeed);
 
     udp.SetSend(cmd);
 }
