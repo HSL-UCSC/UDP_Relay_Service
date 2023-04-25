@@ -30,15 +30,8 @@ public:
         return (double)ts.tv_sec + (double)ts.tv_nsec / 1000000000.0;
     }
     Custom(uint8_t level) : safe(LeggedType::Go1),
-                            udp(level, 8090, "192.168.123.161", 8082)
+                            udp(level, 8090, "127.0.0.1", 8082)
     {
-        server_fd = socket(AF_INET, SOCK_DGRAM, 0);
-        memset(&servaddr, 0, sizeof(servaddr));
-        servaddr.sin_family = AF_INET;
-        servaddr.sin_addr.s_addr = INADDR_ANY;
-        servaddr.sin_port = htons(PORT);
-        bind(server_fd, (const struct sockaddr *)&servaddr, sizeof(servaddr));
-
         udp.InitCmdData(cmd);
     }
     void UDPRecv();
@@ -73,6 +66,17 @@ void Custom::UDPSend()
 
 void Custom::UDPMatlab()
 {
+    if (i == 0)
+    {
+        server_fd = socket(AF_INET, SOCK_DGRAM, 0);
+        memset(&servaddr, 0, sizeof(servaddr));
+        servaddr.sin_family = AF_INET;
+        servaddr.sin_addr.s_addr = INADDR_ANY;
+        servaddr.sin_port = htons(PORT);
+        bind(server_fd, (const struct sockaddr *)&servaddr, sizeof(servaddr));
+        i = 1;
+    }
+
     recvfrom(server_fd, data, sizeof(data), 0, NULL, NULL);
     last_recv_time = GetSystemTime();
     // printf("Received Matlab data: %f, %f\n", data[0], data[1]);
