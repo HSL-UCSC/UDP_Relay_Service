@@ -7,6 +7,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <string.h>
+#include <time.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -22,9 +23,22 @@ using namespace UNITREE_LEGGED_SDK;
 class Custom
 {
 public:
+    double GetSystemTime()
+    {
+        struct timespec ts;
+        clock_gettime(CLOCK_REALTIME, &ts);
+        return (double)ts.tv_sec + (double)ts.tv_nsec / 1000000000.0;
+    }
     Custom(uint8_t level) : safe(LeggedType::Go1),
                             udp(level, 8090, "192.168.123.161", 8082)
     {
+        server_fd = socket(AF_INET, SOCK_DGRAM, 0);
+        memset(&servaddr, 0, sizeof(servaddr));
+        servaddr.sin_family = AF_INET;
+        servaddr.sin_addr.s_addr = INADDR_ANY;
+        servaddr.sin_port = htons(PORT);
+        bind(server_fd, (const struct sockaddr *)&servaddr, sizeof(servaddr));
+
         udp.InitCmdData(cmd);
     }
     void UDPRecv();
@@ -44,6 +58,7 @@ public:
     char buffer[MAX_BUFFER_SIZE];
     struct sockaddr_in servaddr, cliaddr;
     socklen_t len;
+    double last_recv_time = 0.0;
 };
 
 void Custom::UDPRecv()
@@ -58,26 +73,9 @@ void Custom::UDPSend()
 
 void Custom::UDPMatlab()
 {
-
-    if (i == 0) 
-    {
-
-        server_fd = socket(AF_INET, SOCK_DGRAM, 0);
-        memset(&servaddr, 0, sizeof(servaddr));
-
-        servaddr.sin_family = AF_INET;
-        servaddr.sin_addr.s_addr = INADDR_ANY;
-        servaddr.sin_port = htons(PORT);
-
-        bind(server_fd, (const struct sockaddr *)&servaddr, sizeof(servaddr));
-
-        len = sizeof(cliaddr);
-
-        i = 1;
-    }
     recvfrom(server_fd, data, sizeof(data), 0, NULL, NULL);
-
-    //printf("Received Matlab data: %f, %f\n", data[0], data[1]);
+    last_recv_time = GetSystemTime();
+    // printf("Received Matlab data: %f, %f\n", data[0], data[1]);
 }
 
 void Custom::UDPLink()
@@ -85,53 +83,28 @@ void Custom::UDPLink()
 
     motiontime += 2;
     udp.GetRecv(state);
-    // printf("%d   %f\n", motiontime, state.imu.quaternion[2]);
+    double current_time = GetSystemTime();
+    if (current_time - last_recv_time > 1.0)
+    {
+        cmd = {0};
+    }
+    else
+    {
+        cmd.mode = static_cast<uint8_t>(data[0]);
+        cmd.gaitType = static_cast<uint8_t>(data[1]);
+        cmd.speedLevel = static_cast<uint8_t>(data[2]);
+        cmd.footRaiseHeight = data[3]; // float (unit: m, default: 0.08m), foot up height while walking, delta value
+        cmd.bodyHeight = data[4];      // float (unit: m, default: 0.28m), delta value
+        cmd.euler[0] = data[5];        // float (unit: rad), roll pitch yaw in stand mode
+        cmd.euler[1] = data[6];
+        cmd.euler[2] = data[7];
+        cmd.velocity[0] = data[8]; // float (unit: m/s), forwardSpeed,  in body frame
+        cmd.velocity[1] = data[9]; // float (unit: m/s), sideSpeed
+        cmd.yawSpeed = data[10];   // float (unit: rad/s), rotateSpeed in body frame
+        cmd.reserve = 0;
+    }
 
-    cmd.mode = static_cast<uint8_t>(data[0]);
-    /*
-    uint8_t
-    0. idle, default stand
-    1. force stand (controlled by dBodyHeight + ypr)
-    2. target velocity walking (controlled by velocity + yawSpeed)
-    3. target position walking (controlled by position + ypr[0])
-    4. path mode walking (reserve for future release)
-    5. position stand down.
-    6. position stand up
-    7. damping mode
-    8. recovery stand
-    9. backflip
-    10. jumpYaw
-    11. straightHand
-    12. dance1
-    13. dance2
-    */
-    cmd.gaitType = static_cast<uint8_t>(data[1]);
-    /*
-    uint8_t
-    0.idle
-    1.trot
-    2.trot running
-    3.climb stair
-    4.trot obstacle
-    */
-    cmd.speedLevel = static_cast<uint8_t>(data[2]);
-    /*
-    uint8_t
-    0. default low speed.
-    1. medium speed
-    2. high speed. during walking, only respond MODE 3
-    */
-    cmd.footRaiseHeight = data[3]; // float (unit: m, default: 0.08m), foot up height while walking, delta value
-    cmd.bodyHeight = data[4];     // float (unit: m, default: 0.28m), delta value
-    cmd.euler[0] = data[5]; // float (unit: rad), roll pitch yaw in stand mode
-    cmd.euler[1] = data[6];
-    cmd.euler[2] = data[7];
-    cmd.velocity[0] = data[8]; // float (unit: m/s), forwardSpeed,  in body frame
-    cmd.velocity[1] = data[9]; // float (unit: m/s), sideSpeed
-    cmd.yawSpeed = data[10];    // float (unit: rad/s), rotateSpeed in body frame
-    cmd.reserve = 0;
-
-    //printf("mode:%d\ngaitType:%d\nspeedLevel:%d\n", cmd.mode,cmd.gaitType,cmd.speedLevel);
+    // printf("mode:%d\ngaitType:%d\nspeedLevel:%d\n", cmd.mode,cmd.gaitType,cmd.speedLevel);
 
     udp.SetSend(cmd);
 }
