@@ -1,3 +1,10 @@
 # unitree_matlab
 
-Base on unitree_legged_sdk v3.8.0. Receive MATLAB udp data and send to Go1
+sudo apt-get update
+sudo apt-get install libboost-all-dev cmake g++
+
+git clone https://github.com/lyphix/unitree_matlab.git
+cd unitree_matlab/
+mkdir build
+cd build/
+cmake ..
