@@ -8,3 +8,4 @@ cd unitree_matlab/
 mkdir build  
 cd build/  
 cmake ..  
+make
